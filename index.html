@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мандал сумын 4-р сургууль - Хичээлийн хуваарь</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- CSS Анимейшн бүхий арын дэвсгэр -->
+  <div class="bg-animation">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+  </div>
+
+  <div class="container">
+    <!-- Толгой хэсэг -->
+    <header class="header">
+      <h1>Мандал сумын 4-р сургууль</h1>
+      <p>Хичээлийн хуваарийн цахим систем</p>
+    </header>
+
+    <!-- 3 Төрлөөр харах товчнууд -->
+    <nav class="category-nav">
+      <button class="nav-btn active" data-category="classes">
+        <span class="icon">🏫</span> Ангиар харах <span class="badge">38</span>
+      </button>
+      <button class="nav-btn" data-category="teachers">
+        <span class="icon">👨‍🏫</span> Багшаар харах <span class="badge">37</span>
+      </button>
+      <button class="nav-btn" data-category="cabinets">
+        <span class="icon">🚪</span> Танхимаар харах <span class="badge">25</span>
+      </button>
+    </nav>
+
+    <!-- Зургуудын сүлжээ (Grid) -->
+    <main id="galleryGrid" class="gallery-grid"></main>
+  </div>
+
+  <!-- Zoom & Pop-up Modal (Lightbox) -->
+  <div id="lightbox" class="lightbox">
+    <span class="close-btn" title="Хаах">&times;</span>
+    <div class="lightbox-tools">
+      <button id="zoomInBtn" title="Томсгох">+</button>
+      <button id="zoomOutBtn" title="Жижигсгэх">-</button>
+      <button id="resetZoomBtn" title="Эхнээс нь харах">↺</button>
+    </div>
+    <div class="img-wrapper">
+      <img id="lightboxImg" src="" alt="Хуваарь">
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
