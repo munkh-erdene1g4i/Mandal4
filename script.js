@@ -2,14 +2,14 @@
 const imagesData = {
   // 1. Ангиар харах (38 зураг)
   classes: [
-"c (1).jpg", "c (2).jpg", "c (3).jpg", "c (4).jpg", "c (5).jpg",
+"c (2).jpg", "c (3).jpg", "c (4).jpg", "c (5).jpg",
 "c (6).jpg", "c (7).jpg", "c (8).jpg", "c (9).jpg", "c (10).jpg",
 "c (11).jpg", "c (12).jpg", "c (13).jpg", "c (14).jpg", "c (15).jpg",
 "c (16).jpg", "c (17).jpg", "c (18).jpg", "c (19).jpg", "c (20).jpg",
 "c (21).jpg", "c (22).jpg", "c (23).jpg", "c (24).jpg", "c (25).jpg",
 "c (26).jpg", "c (27).jpg", "c (28).jpg", "c (29).jpg", "c (30).jpg",
 "c (31).jpg", "c (32).jpg", "c (33).jpg", "c (34).jpg", "c (35).jpg",
-"c (36).jpg", "c (37).jpg", "c (38).jpg"
+"c (36).jpg", "c (37).jpg", "c (38).jpg", "c (39).jpg"
   ],
 
   // 2. Багшаар харах (37 зураг)
