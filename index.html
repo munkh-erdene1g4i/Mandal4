@@ -2,17 +2,15 @@
 <html lang="mn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Мандал сумын 4-р сургууль - Хичээлийн хуваарь</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- CSS Анимейшн бүхий арын дэвсгэр -->
+  <!-- 🌌 Од харвах арын дэвсгэрийн Canvas -->
   <div class="bg-animation">
-    <div class="blob blob1"></div>
-    <div class="blob blob2"></div>
-    <div class="blob blob3"></div>
+    <canvas id="starCanvas"></canvas>
   </div>
 
   <div class="container">
@@ -22,34 +20,70 @@
       <p>Хичээлийн хуваарийн цахим систем</p>
     </header>
 
-    <!-- 3 Төрлөөр харах товчнууд -->
-    <nav class="category-nav">
-      <button class="nav-btn active" data-category="classes">
-        <span class="icon">🏫</span> Ангиар харах <span class="badge">38</span>
-      </button>
-      <button class="nav-btn" data-category="teachers">
-        <span class="icon">👨‍🏫</span> Багшаар харах <span class="badge">37</span>
-      </button>
-      <button class="nav-btn" data-category="cabinets">
-        <span class="icon">🚪</span> Танхимаар харах <span class="badge">25</span>
-      </button>
+    <!-- 🎯 ТОМРУУЛСАН 3 ЦЭС ТОАЧНУУД -->
+    <nav class="category-nav-wrapper">
+      <div class="category-nav">
+        <button class="nav-btn" data-category="classes">
+          <span class="icon">🏫</span>
+          <span>Ангиар харах</span>
+          <span class="badge">38</span>
+        </button>
+        <button class="nav-btn" data-category="teachers">
+          <span class="icon">👨‍🏫</span>
+          <span>Багшаар харах</span>
+          <span class="badge">37</span>
+        </button>
+        <button class="nav-btn" data-category="cabinets">
+          <span class="icon">🚪</span>
+          <span>Танхимаар харах</span>
+          <span class="badge">25</span>
+        </button>
+      </div>
     </nav>
 
-    <!-- Зургуудын сүлжээ (Grid) -->
+    <!-- Зургуудын сүлжээ -->
     <main id="galleryGrid" class="gallery-grid"></main>
+
+    <!-- Хуудаслалт -->
+    <div id="pagination" class="pagination-container"></div>
   </div>
 
-  <!-- Zoom & Pop-up Modal (Lightbox) -->
-  <div id="lightbox" class="lightbox">
-    <span class="close-btn" title="Хаах">&times;</span>
-    <div class="lightbox-tools">
-      <button id="zoomInBtn" title="Томсгох">+</button>
-      <button id="zoomOutBtn" title="Жижигсгэх">-</button>
-      <button id="resetZoomBtn" title="Эхнээс нь харах">↺</button>
+  <!-- Санал гомдол илгээх footer хэсэг -->
+  <footer class="footer">
+    <button id="feedbackBtn" class="feedback-btn">
+      💬 Хуваарийн талаар санал гомдол илгээх
+    </button>
+  </footer>
+
+  <!-- Санал гомдлын цонх -->
+  <div id="feedbackModal" class="custom-modal">
+    <div class="modal-content">
+      <div class="modal-icon">🏫</div>
+      <h3>Санал гомдол илгээх</h3>
+      <p>2 давхарт байрлах <strong>М.Баянбулагийн</strong> өрөөнд ороод санал гомдлоо хэлнэ үү.</p>
+      <button id="closeFeedbackModalBtn" class="modal-close-action">Ойлголоо</button>
     </div>
-    <div class="img-wrapper">
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-header">
+      <div class="lightbox-tools">
+        <button id="zoomInBtn" title="Томсгох">🔍+</button>
+        <button id="zoomOutBtn" title="Жижигсгэх">🔍-</button>
+        <button id="resetZoomBtn" title="Эхнээс нь харах">↺</button>
+        <button id="downloadBtn" class="download-action-btn" title="Татах">
+          <span>📥 Татах</span>
+        </button>
+      </div>
+      <button class="close-btn" id="closeBtn" title="Хаах">&times;</button>
+    </div>
+
+    <div class="img-wrapper" id="imgWrapper">
       <img id="lightboxImg" src="" alt="Хуваарь">
     </div>
+    
+    <div class="mobile-hint">💡 Хуруугаараа чимхэж эсвэл 2 дарахад томрно</div>
   </div>
 
   <script src="script.js"></script>
