@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- 🌌 Од харвах арын дэвсгэрийн Canvas -->
+  <!-- 🌌 Шөнийн тэнгэр & Од харвах хөнгөн арын дэвсгэр -->
   <div class="bg-animation">
     <canvas id="starCanvas"></canvas>
   </div>
@@ -20,22 +20,28 @@
       <p>Хичээлийн хуваарийн цахим систем</p>
     </header>
 
-    <!-- 🎯 ТОМРУУЛСАН 3 ЦЭС ТОАЧНУУД -->
+    <!-- 🎯 ҮНДСЭН 3 ЦЭС ТОАЧНУУД -->
     <nav class="category-nav-wrapper">
       <div class="category-nav">
         <button class="nav-btn" data-category="classes">
-          <span class="icon">🏫</span>
-          <span>Ангиар харах</span>
+          <div class="btn-left">
+            <span class="icon">🏫</span>
+            <span class="btn-text">Ангиар харах</span>
+          </div>
           <span class="badge">38</span>
         </button>
         <button class="nav-btn" data-category="teachers">
-          <span class="icon">👨‍🏫</span>
-          <span>Багшаар харах</span>
+          <div class="btn-left">
+            <span class="icon">👨‍🏫</span>
+            <span class="btn-text">Багшаар харах</span>
+          </div>
           <span class="badge">37</span>
         </button>
         <button class="nav-btn" data-category="cabinets">
-          <span class="icon">🚪</span>
-          <span>Танхимаар харах</span>
+          <div class="btn-left">
+            <span class="icon">🚪</span>
+            <span class="btn-text">Танхимаар харах</span>
+          </div>
           <span class="badge">25</span>
         </button>
       </div>
@@ -48,24 +54,7 @@
     <div id="pagination" class="pagination-container"></div>
   </div>
 
-  <!-- Санал гомдол илгээх footer хэсэг -->
-  <footer class="footer">
-    <button id="feedbackBtn" class="feedback-btn">
-      💬 Хуваарийн талаар санал гомдол илгээх
-    </button>
-  </footer>
-
-  <!-- Санал гомдлын цонх -->
-  <div id="feedbackModal" class="custom-modal">
-    <div class="modal-content">
-      <div class="modal-icon">🏫</div>
-      <h3>Санал гомдол илгээх</h3>
-      <p>2 давхарт байрлах <strong>М.Баянбулагийн</strong> өрөөнд ороод санал гомдлоо хэлнэ үү.</p>
-      <button id="closeFeedbackModalBtn" class="modal-close-action">Ойлголоо</button>
-    </div>
-  </div>
-
-  <!-- Lightbox Modal -->
+  <!-- Lightbox Zoom Modal -->
   <div id="lightbox" class="lightbox">
     <div class="lightbox-header">
       <div class="lightbox-tools">
