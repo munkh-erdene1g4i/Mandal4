@@ -10,13 +10,11 @@ body {
   color: #ffffff;
   background-color: #060913;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   position: relative;
   overflow-x: hidden;
 }
 
-/* 🌌 Шөнийн тэнгэр & Од харвах Canvas арын дэвсгэр */
+/* 🌌 Canvas Арын дэвсгэр */
 .bg-animation {
   position: fixed;
   top: 0;
@@ -34,19 +32,18 @@ body {
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 16px 20px;
-  flex: 1;
+  padding: 35px 16px;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .header h1 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 800;
   background: linear-gradient(135deg, #60a5fa, #c084fc);
   -webkit-background-clip: text;
@@ -56,28 +53,28 @@ body {
 
 .header p {
   color: #94a3b8;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
-/* 🎯 ТОМРУУЛСАН 3 ЦЭС ТОАЧ БОЛОН ГЭРЭЛТЭХ ЭФФЕКТ */
+/* 🎯 ҮНДСЭН 3 ТОАЧНЫ ЗАГВАР (COMPUTE & MOBILE) */
 .category-nav-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 }
 
 .category-nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
-  padding: 10px;
+  gap: 14px;
+  padding: 8px;
   background: rgba(17, 24, 39, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
 }
 
@@ -85,70 +82,64 @@ body {
   background: transparent;
   border: 1px solid transparent;
   color: #e2e8f0;
-  padding: 16px 36px; /* Товчийг томруулсан */
+  padding: 14px 28px;
   border-radius: 40px;
-  font-size: 1.15rem; /* Текстийн хэмжээг томруулсан */
+  font-size: 1.05rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.25s ease;
   display: flex;
   align-items: center;
   gap: 12px;
-  position: relative;
-  overflow: hidden;
+}
+
+.btn-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .nav-btn .icon {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 
 .nav-btn:hover {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-3px);
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
 }
 
 .nav-btn:active {
-  transform: scale(0.95);
+  transform: scale(0.96);
 }
 
-/* 💡 Идэвхтэй болон Дарах үеийн гэрэлтэх эффект */
 .nav-btn.active {
   background: linear-gradient(135deg, #6366f1, #9333ea);
   color: #ffffff;
-  box-shadow: 0 0 30px rgba(147, 51, 234, 0.6), 0 0 10px rgba(99, 102, 241, 0.8);
-  transform: scale(1.04);
+  box-shadow: 0 0 25px rgba(147, 51, 234, 0.5);
 }
 
 .nav-btn.glow-pulse {
-  animation: glowPulse 0.4s ease-out forwards;
+  animation: glowPulse 0.35s ease-out forwards;
 }
 
 @keyframes glowPulse {
-  0% {
-    box-shadow: 0 0 0px rgba(56, 189, 248, 0.8);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(56, 189, 248, 1), 0 0 80px rgba(168, 85, 247, 0.8);
-  }
-  100% {
-    box-shadow: 0 0 30px rgba(147, 51, 234, 0.6);
-  }
+  0% { box-shadow: 0 0 0px rgba(56, 189, 248, 0.8); }
+  50% { box-shadow: 0 0 35px rgba(56, 189, 248, 0.9); }
+  100% { box-shadow: 0 0 25px rgba(147, 51, 234, 0.5); }
 }
 
 .badge {
   background: rgba(0, 0, 0, 0.35);
-  padding: 3px 10px;
-  border-radius: 14px;
-  font-size: 0.85rem;
+  padding: 3px 9px;
+  border-radius: 12px;
+  font-size: 0.82rem;
 }
 
 /* Эхний санамж мессеж */
 .welcome-placeholder {
   grid-column: 1 / -1;
   text-align: center;
-  padding: 55px 20px;
+  padding: 50px 20px;
   background: rgba(17, 24, 39, 0.6);
   border: 1px dashed rgba(255, 255, 255, 0.15);
   border-radius: 20px;
@@ -156,15 +147,16 @@ body {
 }
 
 .welcome-placeholder div {
-  font-size: 3rem;
-  margin-bottom: 12px;
+  font-size: 2.8rem;
+  margin-bottom: 10px;
 }
 
-/* Зургийн Card хэсэг (Зөөлөн хуудас шилжилт) */
+/* Зургийн Card хэсэг */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  transition: opacity 0.2s ease;
 }
 
 .card {
@@ -175,25 +167,17 @@ body {
   cursor: pointer;
   position: relative;
   aspect-ratio: 4 / 3;
-  animation: smoothFade 0.4s ease-out forwards;
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  animation: cardFade 0.3s ease-out forwards;
 }
 
-@keyframes smoothFade {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes cardFade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   border-color: #a855f7;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
 .card img {
@@ -220,9 +204,9 @@ body {
 .card-btn {
   background: #6366f1;
   color: white;
-  padding: 8px 18px;
+  padding: 8px 16px;
   border-radius: 20px;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 600;
 }
 
@@ -242,9 +226,8 @@ body {
   padding: 8px 16px;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  transition: background 0.2s ease;
 }
 
 .page-btn:hover:not(:disabled) {
@@ -259,91 +242,6 @@ body {
 .page-btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;
-}
-
-/* FOOTER & САНАЛ ГОМДОЛ */
-.footer {
-  text-align: center;
-  padding: 20px 10px 25px;
-  margin-top: auto;
-}
-
-.feedback-btn {
-  background: rgba(30, 41, 59, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #94a3b8;
-  padding: 9px 20px;
-  border-radius: 25px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.feedback-btn:hover {
-  background: rgba(51, 65, 85, 0.8);
-  color: #ffffff;
-}
-
-/* Custom Modal */
-.custom-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-
-.custom-modal.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.modal-content {
-  background: #111827;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  padding: 28px;
-  max-width: 360px;
-  width: 90%;
-  text-align: center;
-}
-
-.modal-icon {
-  font-size: 2.6rem;
-  margin-bottom: 10px;
-}
-
-.modal-content h3 {
-  font-size: 1.25rem;
-  margin-bottom: 10px;
-  color: #ffffff;
-}
-
-.modal-content p {
-  color: #cbd5e1;
-  font-size: 0.92rem;
-  line-height: 1.45;
-  margin-bottom: 20px;
-}
-
-.modal-content strong {
-  color: #38bdf8;
-}
-
-.modal-close-action {
-  background: linear-gradient(135deg, #6366f1, #9333ea);
-  color: white;
-  border: none;
-  padding: 9px 24px;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
 }
 
 /* Lightbox Modal */
@@ -449,25 +347,42 @@ body {
   100% { left: 105vw; }
 }
 
+/* 📱 УТАСНЫ ДЭЛГЭЦЭНД ЗОРИУЛСАН ТӨГС RESPONSIVE ТОХИРГОО */
 @media (max-width: 640px) {
-  .container { padding: 16px 10px 10px; }
-  .header h1 { font-size: 1.6rem; }
-  .category-nav-wrapper { margin-bottom: 25px; }
+  .container {
+    padding: 20px 12px;
+  }
+  
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .header p {
+    font-size: 0.9rem;
+  }
+
+  /* Утас дээр 3 товчийг доош нь цувуулж цэвэрхэн том болгов */
+  .category-nav-wrapper {
+    margin-bottom: 25px;
+  }
+
   .category-nav {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
-    padding: 6px;
+    flex-direction: column;
     width: 100%;
+    max-width: 340px;
+    gap: 10px;
+    padding: 10px;
     border-radius: 20px;
   }
+
   .nav-btn {
-    padding: 12px 4px;
-    font-size: 0.8rem;
-    flex-direction: column;
-    gap: 4px;
+    width: 100%;
+    justify-content: space-between;
+    padding: 14px 18px;
+    font-size: 1rem;
     border-radius: 14px;
   }
+
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
