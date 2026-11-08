@@ -46,10 +46,6 @@ const zoomOutBtn = document.getElementById('zoomOutBtn');
 const resetZoomBtn = document.getElementById('resetZoomBtn');
 const downloadBtn = document.getElementById('downloadBtn');
 
-const feedbackBtn = document.getElementById('feedbackBtn');
-const feedbackModal = document.getElementById('feedbackModal');
-const closeFeedbackModalBtn = document.getElementById('closeFeedbackModalBtn');
-
 let currentScale = 1;
 let currentImageSrc = '';
 let panX = 0, panY = 0;
@@ -57,7 +53,7 @@ let startX = 0, startY = 0;
 let isDragging = false;
 let initialPinchDistance = null;
 
-// 🎵 WEB AUDIO API - ТОАЧ ДАРАХАД ЗӨӨЛӨН АЯ ГАРАХ ФУНКЦ
+// 🎵 WEB AUDIO API - ЗӨӨЛӨН АЯ
 function playSoftClickSound() {
   try {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -68,7 +64,6 @@ function playSoftClickSound() {
     const gain = audioCtx.createGain();
 
     osc.type = 'sine';
-    // Зөөлөн эгшиглэх давтамж (C5 -> E5)
     osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); 
     osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.15);
 
@@ -80,12 +75,10 @@ function playSoftClickSound() {
 
     osc.start();
     osc.stop(audioCtx.currentTime + 0.35);
-  } catch (e) {
-    // Аудиог хориглосон тохиолдолд чимээгүй өнгөрнө
-  }
+  } catch (e) {}
 }
 
-// 🌌 Canvas дээр Од харах & Од харвах Анимейшн
+// 🌌 Canvas од харвах анимейшн
 const canvas = document.getElementById('starCanvas');
 const ctx = canvas.getContext('2d');
 let stars = [];
@@ -122,13 +115,11 @@ function createShootingStar() {
   });
 }
 
-// Од харвах давтамж (3.5 секунд тутамд)
 setInterval(createShootingStar, 3500);
 
 function animateStars() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Анивчих одууд
   stars.forEach(star => {
     star.alpha += star.speed;
     if (star.alpha > 1 || star.alpha < 0.2) star.speed = -star.speed;
@@ -138,7 +129,6 @@ function animateStars() {
     ctx.fill();
   });
 
-  // Харвах одууд
   shootingStars.forEach((sStar, index) => {
     const endX = sStar.x + Math.cos(sStar.angle) * sStar.length;
     const endY = sStar.y + Math.sin(sStar.angle) * sStar.length;
@@ -261,7 +251,7 @@ function renderPagination(totalPages) {
   paginationContainer.appendChild(nextBtn);
 }
 
-// 🎯 Товчлуур дарах бүрт Ая & Гэрэлтүүлэг орно
+// Товчлуур дарахад Ая & Гэрэлтүүлэг
 navButtons.forEach(btn => {
   btn.addEventListener('click', () => {
     playSoftClickSound();
@@ -277,7 +267,6 @@ navButtons.forEach(btn => {
     currentCategory = btn.getAttribute('data-category');
     currentPage = 1;
 
-    // Зөөлөн шилжих анимейшн
     galleryGrid.style.opacity = '0.3';
     setTimeout(() => {
       renderGallery();
@@ -300,20 +289,6 @@ function triggerPenguinEasterEgg() {
     if (penguin) penguin.remove();
   }, 8600);
 }
-
-// 💬 Санал гомдол
-feedbackBtn.addEventListener('click', () => {
-  playSoftClickSound();
-  feedbackModal.classList.add('active');
-});
-
-closeFeedbackModalBtn.addEventListener('click', () => {
-  feedbackModal.classList.remove('active');
-});
-
-feedbackModal.addEventListener('click', (e) => {
-  if (e.target === feedbackModal) feedbackModal.classList.remove('active');
-});
 
 // Lightbox
 function openLightbox(src, fileName) {
@@ -366,7 +341,7 @@ downloadBtn.addEventListener('click', (e) => {
   if (currentImageSrc) downloadImage(currentImageSrc);
 });
 
-// Zoom logic
+// Zoom controls
 function updateTransform() {
   lightboxImg.style.transform = `translate(${panX}px, ${panY}px) scale(${currentScale})`;
 }
@@ -433,9 +408,8 @@ imgWrapper.addEventListener('touchend', () => {
 });
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    if (lightbox.classList.contains('active')) closeLightbox();
-    if (feedbackModal.classList.contains('active')) feedbackModal.classList.remove('active');
+  if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+    closeLightbox();
   }
 });
 
