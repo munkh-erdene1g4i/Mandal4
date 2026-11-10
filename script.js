@@ -15,10 +15,10 @@ const imagesData = {
     "t (6).jpg", "t (7).jpg", "t (8).jpg", "t (9).jpg", "t (10).jpg",
     "t (11).jpg", "t (12).jpg", "t (13).jpg", "t (14).jpg", "t (15).jpg",
     "t (16).jpg", "t (17).jpg", "t (18).jpg", "t (19).jpg", "t (20).jpg",
-    "t (21).jpg", "t (22).jpg", "t (23).jpg", "t (24).jpg", "t (25).jpg",
+    "t (21).jpg", "t (22).jpg", "t (23).jpg", "t (25).jpg",
     "t (26).jpg", "t (27).jpg", "t (28).jpg", "t (29).jpg", "t (30).jpg",
-    "t (31).jpg", "t (32).jpg", "t (33).jpg", "t (34).jpg", "t (35).jpg",
-    "t (36).jpg", "t (37).jpg"
+    "t (31).jpg", "t (33).jpg", "t (34).jpg", "t (35).jpg",
+    "t (36).jpg", "t (37).jpg", "t (38).jpg", "t (39).jpg"
   ],
   cabinets: [
     "k (1).jpg", "k (2).jpg", "k (3).jpg", "k (4).jpg", "k (5).jpg",
