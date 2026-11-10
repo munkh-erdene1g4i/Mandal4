@@ -1,7 +1,7 @@
 // Зургуудын файлын нэрсийн жагсаалт
 const imagesData = {
   classes: [
-    "c (2).jpg", "c (3).jpg", "c (4).jpg", "c (5).jpg",
+    "c (1).jpg", "c (2).jpg", "c (3).jpg", "c (4).jpg", "c (5).jpg",
     "c (6).jpg", "c (7).jpg", "c (8).jpg", "c (9).jpg", "c (10).jpg",
     "c (11).jpg", "c (12).jpg", "c (13).jpg", "c (14).jpg", "c (15).jpg",
     "c (16).jpg", "c (17).jpg", "c (18).jpg", "c (19).jpg", "c (20).jpg",
@@ -15,8 +15,8 @@ const imagesData = {
     "t (6).jpg", "t (7).jpg", "t (8).jpg", "t (9).jpg", "t (10).jpg",
     "t (11).jpg", "t (12).jpg", "t (13).jpg", "t (14).jpg", "t (15).jpg",
     "t (16).jpg", "t (17).jpg", "t (18).jpg", "t (19).jpg", "t (20).jpg",
-    "t (21).jpg", "t (22).jpg", "t (23).jpg", "t (25).jpg", "t (30).jpg",
-    "t (26).jpg", "t (27).jpg", "t (28).jpg", "t (29).jpg",  "t (31).jpg",
+    "t (21).jpg", "t (22).jpg", "t (23).jpg", "t (25).jpg", "t (26).jpg",
+    "t (27).jpg", "t (28).jpg", "t (29).jpg", "t (30).jpg", "t (31).jpg",
     "t (33).jpg", "t (34).jpg", "t (35).jpg", "t (36).jpg", "t (37).jpg",
     "t (38).jpg", "t (39).jpg"
   ],
@@ -80,17 +80,19 @@ function playSoftClickSound() {
 
 // 🌌 Canvas од харвах анимейшн
 const canvas = document.getElementById('starCanvas');
-const ctx = canvas.getContext('2d');
+const ctx = canvas ? canvas.getContext('2d') : null;
 let stars = [];
 let shootingStars = [];
 
 function resizeCanvas() {
+  if (!canvas) return;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   initStars();
 }
 
 function initStars() {
+  if (!canvas) return;
   stars = [];
   const starCount = Math.floor((canvas.width * canvas.height) / 3000);
   for (let i = 0; i < starCount; i++) {
@@ -105,6 +107,7 @@ function initStars() {
 }
 
 function createShootingStar() {
+  if (!canvas) return;
   shootingStars.push({
     x: Math.random() * canvas.width,
     y: Math.random() * (canvas.height / 2),
@@ -118,6 +121,7 @@ function createShootingStar() {
 setInterval(createShootingStar, 3500);
 
 function animateStars() {
+  if (!canvas || !ctx) return;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   stars.forEach(star => {
@@ -156,24 +160,27 @@ function animateStars() {
   requestAnimationFrame(animateStars);
 }
 
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-animateStars();
+if (canvas) {
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+  animateStars();
+}
 
 // Эхний санамж харуулах
 function renderInitialState() {
+  if (!galleryGrid) return;
   galleryGrid.innerHTML = `
     <div class="welcome-placeholder">
       <div>👇</div>
       <h3>Хуваарь харах төрлөө дээрх 3 товчноос сонгоно уу</h3>
     </div>
   `;
-  paginationContainer.innerHTML = '';
+  if (paginationContainer) paginationContainer.innerHTML = '';
 }
 
 // Зургуудыг харуулах
 function renderGallery() {
-  if (!currentCategory) return;
+  if (!currentCategory || !galleryGrid) return;
 
   galleryGrid.innerHTML = '';
   const fullList = imagesData[currentCategory];
@@ -209,6 +216,7 @@ function renderGallery() {
 
 // Хуудаслалт
 function renderPagination(totalPages) {
+  if (!paginationContainer) return;
   paginationContainer.innerHTML = '';
   if (totalPages <= 1) return;
 
@@ -267,11 +275,13 @@ navButtons.forEach(btn => {
     currentCategory = btn.getAttribute('data-category');
     currentPage = 1;
 
-    galleryGrid.style.opacity = '0.3';
-    setTimeout(() => {
-      renderGallery();
-      galleryGrid.style.opacity = '1';
-    }, 150);
+    if (galleryGrid) {
+      galleryGrid.style.opacity = '0.3';
+      setTimeout(() => {
+        renderGallery();
+        galleryGrid.style.opacity = '1';
+      }, 150);
+    }
   });
 });
 
@@ -294,8 +304,8 @@ function triggerPenguinEasterEgg() {
 function openLightbox(src, fileName) {
   playSoftClickSound();
   currentImageSrc = src;
-  lightboxImg.src = src;
-  lightbox.classList.add('active');
+  if (lightboxImg) lightboxImg.src = src;
+  if (lightbox) lightbox.classList.add('active');
   resetZoom();
 
   if (fileName && fileName.includes('c (14)')) {
@@ -304,14 +314,16 @@ function openLightbox(src, fileName) {
 }
 
 function closeLightbox() {
-  lightbox.classList.remove('active');
+  if (lightbox) lightbox.classList.remove('active');
   resetZoom();
 }
 
-closeBtn.addEventListener('click', closeLightbox);
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox || e.target === imgWrapper) closeLightbox();
-});
+if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+if (lightbox) {
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox || e.target === imgWrapper) closeLightbox();
+  });
+}
 
 function downloadImage(imgSrc) {
   const fileName = imgSrc.split('/').pop() || 'huvaari.jpg';
@@ -336,14 +348,18 @@ function downloadImage(imgSrc) {
     });
 }
 
-downloadBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  if (currentImageSrc) downloadImage(currentImageSrc);
-});
+if (downloadBtn) {
+  downloadBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (currentImageSrc) downloadImage(currentImageSrc);
+  });
+}
 
 // Zoom controls
 function updateTransform() {
-  lightboxImg.style.transform = `translate(${panX}px, ${panY}px) scale(${currentScale})`;
+  if (lightboxImg) {
+    lightboxImg.style.transform = `translate(${panX}px, ${panY}px) scale(${currentScale})`;
+  }
 }
 
 function setZoom(scale) {
@@ -358,57 +374,59 @@ function resetZoom() {
   updateTransform();
 }
 
-zoomInBtn.addEventListener('click', () => setZoom(currentScale + 0.4));
-zoomOutBtn.addEventListener('click', () => setZoom(currentScale - 0.4));
-resetZoomBtn.addEventListener('click', resetZoom);
+if (zoomInBtn) zoomInBtn.addEventListener('click', () => setZoom(currentScale + 0.4));
+if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => setZoom(currentScale - 0.4));
+if (resetZoomBtn) resetZoomBtn.addEventListener('click', resetZoom);
 
 let lastTap = 0;
-imgWrapper.addEventListener('touchstart', (e) => {
-  if (e.touches.length === 1) {
-    const currentTime = new Date().getTime();
-    if (currentTime - lastTap < 300 && currentTime - lastTap > 0) {
-      if (currentScale > 1) resetZoom();
-      else setZoom(2.2);
-      e.preventDefault();
-    }
-    lastTap = currentTime;
+if (imgWrapper) {
+  imgWrapper.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+      const currentTime = new Date().getTime();
+      if (currentTime - lastTap < 300 && currentTime - lastTap > 0) {
+        if (currentScale > 1) resetZoom();
+        else setZoom(2.2);
+        e.preventDefault();
+      }
+      lastTap = currentTime;
 
-    if (currentScale > 1) {
-      isDragging = true;
-      startX = e.touches[0].clientX - panX;
-      startY = e.touches[0].clientY - panY;
+      if (currentScale > 1) {
+        isDragging = true;
+        startX = e.touches[0].clientX - panX;
+        startY = e.touches[0].clientY - panY;
+      }
+    } else if (e.touches.length === 2) {
+      isDragging = false;
+      initialPinchDistance = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
     }
-  } else if (e.touches.length === 2) {
+  });
+
+  imgWrapper.addEventListener('touchmove', (e) => {
+    if (isDragging && e.touches.length === 1 && currentScale > 1) {
+      panX = e.touches[0].clientX - startX;
+      panY = e.touches[0].clientY - startY;
+      updateTransform();
+    } else if (e.touches.length === 2 && initialPinchDistance) {
+      const currentDistance = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      setZoom(currentScale + (currentDistance - initialPinchDistance) / 200);
+      initialPinchDistance = currentDistance;
+    }
+  });
+
+  imgWrapper.addEventListener('touchend', () => {
     isDragging = false;
-    initialPinchDistance = Math.hypot(
-      e.touches[0].clientX - e.touches[1].clientX,
-      e.touches[0].clientY - e.touches[1].clientY
-    );
-  }
-});
-
-imgWrapper.addEventListener('touchmove', (e) => {
-  if (isDragging && e.touches.length === 1 && currentScale > 1) {
-    panX = e.touches[0].clientX - startX;
-    panY = e.touches[0].clientY - startY;
-    updateTransform();
-  } else if (e.touches.length === 2 && initialPinchDistance) {
-    const currentDistance = Math.hypot(
-      e.touches[0].clientX - e.touches[1].clientX,
-      e.touches[0].clientY - e.touches[1].clientY
-    );
-    setZoom(currentScale + (currentDistance - initialPinchDistance) / 200);
-    initialPinchDistance = currentDistance;
-  }
-});
-
-imgWrapper.addEventListener('touchend', () => {
-  isDragging = false;
-  initialPinchDistance = null;
-});
+    initialPinchDistance = null;
+  });
+}
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+  if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
     closeLightbox();
   }
 });
