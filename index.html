@@ -1,78 +1,138 @@
 <!DOCTYPE html>
-<html lang="mn">
+<html lang="mn" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Мандал сумын 4-р сургууль - Хичээлийн хуваарь</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Хичээлийн хуваарь | Мандал сумын Ерөнхий боловсролын 4-р сургууль</title>
+
+  <!-- Google Fonts: Montserrat & Nunito (Үндсэн сайттай ижил) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- 🌌 Шөнийн тэнгэр & Од харвах хөнгөн арын дэвсгэр -->
-  <div class="bg-animation">
-    <canvas id="starCanvas"></canvas>
+  <!-- Үндсэн сайтын зөөлөн ууссан арын дэвсгэр -->
+  <div class="ambient-mesh" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
   </div>
 
-  <div class="container">
-    <!-- Толгой хэсэг -->
-    <header class="header">
-      <h1>Мандал сумын 4-р сургууль</h1>
-      <p>Хичээлийн хуваарийн цахим систем</p>
-    </header>
+  <!-- Дээд талын цантсан шилэн цэс (Glass Navbar) -->
+  <header class="glass-nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-logo liquid-gradient-bg">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-sub">Сэлэнгэ аймаг • Мандал сум</span>
+          <strong class="brand-title">Ерөнхий боловсролын 4-р сургууль</strong>
+        </div>
+      </div>
 
-    <!-- 🎯 ҮНДСЭН 3 ЦЭС ТОАЧНУУД -->
-    <nav class="category-nav-wrapper">
-      <div class="category-nav">
+      <div class="nav-badge">
+        <span class="pulse-dot"></span>
+        <span>2026–2027 Хичээлийн жил</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero хэсэг (Liquid Gradient Banner) -->
+  <section class="hero-banner liquid-gradient-bg">
+    <div class="hero-dots" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <div class="hero-pill">
+        <span>📅 Цахим мэдээллийн самбар</span>
+      </div>
+      <h1 class="hero-title">
+        Хичээлийн <span class="text-gradient-warm">нэгдсэн хуваарь</span>
+      </h1>
+      <p class="hero-desc">
+        Анги бүлэг, багш болон хичээлийн кабинетийн хуваарийг доорх төрлүүдээс сонгон харж, утсандаа татаж авна уу
+      </p>
+    </div>
+  </section>
+
+  <!-- Үндсэн удирдлага ба Галерей хэсэг -->
+  <main class="container main-section">
+    <!-- Төрөл сонгох болон хайх шилэн самбар -->
+    <div class="glass-card control-panel">
+      <div class="category-tabs" role="tablist">
         <button class="nav-btn" data-category="classes">
-          <div class="btn-left">
-            <span class="icon">🏫</span>
-            <span class="btn-text">Ангиар харах</span>
-          </div>
-          <span class="badge">38</span>
+          <span>🏫</span>
+          <span>Ангийн хуваарь</span>
         </button>
         <button class="nav-btn" data-category="teachers">
-          <div class="btn-left">
-            <span class="icon">👨‍🏫</span>
-            <span class="btn-text">Багшаар харах</span>
-          </div>
-          <span class="badge">37</span>
+          <span>👩‍🏫</span>
+          <span>Багшийн хуваарь</span>
         </button>
         <button class="nav-btn" data-category="cabinets">
-          <div class="btn-left">
-            <span class="icon">🚪</span>
-            <span class="btn-text">Танхимаар харах</span>
-          </div>
-          <span class="badge">25</span>
+          <span>🚪</span>
+          <span>Кабинетийн хуваарь</span>
         </button>
       </div>
-    </nav>
 
-    <!-- Зургуудын сүлжээ -->
-    <main id="galleryGrid" class="gallery-grid"></main>
+      <!-- Дугаараар хурдан шүүх хэсэг -->
+      <div id="searchBarWrapper" class="search-wrapper hidden">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Дугаараар шүүх (Жишээ: 14)..."
+            autocomplete="off"
+          />
+          <button type="button" id="clearSearchBtn" class="clear-search hidden" title="Цэвэрлэх">✕</button>
+        </div>
+        <span id="resultCountBadge" class="count-badge"></span>
+      </div>
+    </div>
+
+    <!-- Зургуудын жагсаалт -->
+    <section id="galleryGrid" class="gallery-grid" aria-live="polite"></section>
 
     <!-- Хуудаслалт -->
-    <div id="pagination" class="pagination-container"></div>
-  </div>
+    <nav id="pagination" class="pagination" aria-label="Хуудаслалт"></nav>
+  </main>
 
-  <!-- Lightbox Zoom Modal -->
-  <div id="lightbox" class="lightbox">
-    <div class="lightbox-header">
-      <div class="lightbox-tools">
-        <button id="zoomInBtn" title="Томсгох">🔍+</button>
-        <button id="zoomOutBtn" title="Жижигсгэх">🔍-</button>
-        <button id="resetZoomBtn" title="Эхнээс нь харах">↺</button>
-        <button id="downloadBtn" class="download-action-btn" title="Татах">
-          <span>📥 Татах</span>
-        </button>
+  <!-- Хөл хэсэг (Үндсэн сайттай ижил) -->
+  <footer class="site-footer liquid-gradient-bg">
+    <div class="container footer-inner">
+      <div>
+        <strong>Мандал сумын Ерөнхий боловсролын 4-р сургууль</strong>
+        <p>Эрдэм мэдлэг • Эрхэм 5 соёл • Манлайлал</p>
       </div>
-      <button class="close-btn" id="closeBtn" title="Хаах">&times;</button>
+      <span class="footer-copy">© 2026 Сэлэнгэ аймаг, Мандал сум</span>
+    </div>
+  </footer>
+
+  <!-- Томруулж харах цонх (Lightbox Modal) -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
+    <div class="lightbox-topbar">
+      <span id="lightboxTitle" class="lightbox-title">Хичээлийн хуваарь</span>
+      <div class="lightbox-controls">
+        <button id="zoomOutBtn" class="lb-btn" title="Жижигрүүлэх">➖</button>
+        <button id="resetZoomBtn" class="lb-btn" title="Хэвийн хэмжээ">100%</button>
+        <button id="zoomInBtn" class="lb-btn" title="Томруулах">➕</button>
+        <button id="downloadBtn" class="lb-btn lb-btn-download" title="Зураг татах">⬇️ Татах</button>
+        <button id="closeBtn" class="lb-btn lb-btn-close" title="Хаах">✕</button>
+      </div>
     </div>
 
-    <div class="img-wrapper" id="imgWrapper">
-      <img id="lightboxImg" src="" alt="Хуваарь">
+    <div id="imgWrapper" class="img-wrapper">
+      <img id="lightboxImg" src="" alt="Томруулсан хуваарь" draggable="false" />
     </div>
-    
-    <div class="mobile-hint">💡 Хуруугаараа чимхэж эсвэл 2 дарахад томрно</div>
+
+    <div class="lightbox-hint">
+      💡 Зураг дээр 2 удаа товших эсвэл 2 хуруугаар сунгаж томруулна уу
+    </div>
   </div>
 
   <script src="script.js"></script>
